@@ -2,6 +2,7 @@
 
 Unityで冬休みに何か作ります！
 
-test
+* 開発バージョン Unity　2019.4.4f1
 
-2021/02/06 ブランチ分けを行った(一生(hitoiki103))
+### 設計:https://hackmd.io/QlHo0DiLSOCjg9EuH9u15A
+
