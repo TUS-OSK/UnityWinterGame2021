@@ -2,4 +2,7 @@
 
 Unityで冬休みに何か作ります！
 
-test
+* 開発バージョン Unity　2019.4.4f1
+* 個人でファイルは分けよう！
+
+### 設計:https://hackmd.io/QlHo0DiLSOCjg9EuH9u15A
