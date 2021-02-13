@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneState : MonoBehaviour
 {
-    GameMode gameMode;
+    public GameMode gameMode;
 }
 
 public enum GameMode
