@@ -11,6 +11,10 @@ public class KeyPad : MonoBehaviour, IKeyPad
     ReactiveProperty<bool> phaseChangeKey = new ReactiveProperty<bool>();
     ReactiveProperty<Vector2> inputVector = new ReactiveProperty<Vector2>();
     ReactiveProperty<Vector2> mouseCursur = new ReactiveProperty<Vector2>();
+    private void Update()
+    {
+        KeyPadCheck();
+    }
     private void KeyPadCheck()
     {
         leftClick.Value = Input.GetMouseButton(0);
