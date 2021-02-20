@@ -5,6 +5,7 @@ using UnityEngine;
 public struct Bulletstatus
 {
     public int bulletpower;
+    public int bulletnumber;
     public float bulletspeed;
     public GameObject bullet;
 };
@@ -27,7 +28,14 @@ public class MaltipleShot : Shotinterface
 {
     public void shot(Bulletstatus bullet, Vector3 position, Quaternion rotation)
     {
+        Vector3 way = new Vector3(0, 0, 30.0f);
 
+        for (int i = 0; i < bullet.bulletnumber; ++i)
+        {
+            var bulletshot = GameObject.Instantiate(bullet.bullet, position, Quaternion.Euler(way));
+            var v = bulletshot.GetComponent<Bullet>();
+            v.Init(bullet.bulletspeed, bullet.bulletpower);
+        }
     }
 }
 

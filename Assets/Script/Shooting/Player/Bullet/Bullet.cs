@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     {
         m_speed = speed;
         m_power = power;
+        Destroy(this.gameObject, 2);
     }
 
     int getPower()

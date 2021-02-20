@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float m_bulletspeed;
     [SerializeField] private int m_bulletnumber;
     [SerializeField] private int m_bulletpower;
-    private GameObject m_bullet;
+    public GameObject m_bullet;
 
     //現在HP
     [HideInInspector] public ReactiveProperty<int> m_life;
@@ -34,23 +34,19 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_bullet = (GameObject)Resources.Load("NormalShot");
-
-        if (m_bullet == null)
-        {
-            Debug.Log("bulletがnullです");
-        }
         m_life = new ReactiveProperty<int>(m_hpin);
         m_lifemax = new ReactiveProperty<int>(m_hpmaxin);
         m_count = new ReactiveProperty<int>(0);
         m_bulletstatus.bulletpower = m_bulletpower;
         m_bulletstatus.bulletspeed = m_bulletspeed;
+        m_bulletstatus.bulletnumber = m_bulletnumber;
         m_bulletstatus.bullet = m_bullet;
         m_life.Subscribe(x => GaugeHP());
         m_lifemax.Subscribe(x => GaugeMaxHP());
         m_trans = keyPad.InputVector();
 
-        m_shot = new NormalShot();
+        m_shot = new MaltipleShot();
+        keyPad.LeftClick().Subscribe(x => m_shot.shot(m_bulletstatus, transform.position, transform.rotation));
 
     }
 
@@ -59,15 +55,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         transform.position += m_speed * new Vector3(m_trans.Value.x, m_trans.Value.y, 0);
-        if (Input.GetKey(KeyCode.E))
-        {
-            m_shot.shot(m_bulletstatus, transform.position, transform.rotation);
-        }
-
-        if (m_bullet == null)
-        {
-            Debug.Log("bulletがnullです");
-        }
     }
 
     //HPゲージの管理
