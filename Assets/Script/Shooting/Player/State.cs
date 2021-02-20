@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class State : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Test");       
-        Debug.Log("branch");
-        Debug.Log("testbranch");
+        
     }
 
     // Update is called once per frame
-    void Update(){
-
+    void Update()
+    {
+        
     }
 }
