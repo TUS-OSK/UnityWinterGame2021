@@ -15,15 +15,13 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += m_trans;
+        transform.Translate(Vector3.right * m_speed);
     }
 
-    void Init(float speed, int power, Vector3 direction, Vector3 position)
+    public void Init(float speed, int power)
     {
-        m_trans = speed * direction;
         m_speed = speed;
         m_power = power;
-        transform.position = position;
     }
 
     int getPower()
