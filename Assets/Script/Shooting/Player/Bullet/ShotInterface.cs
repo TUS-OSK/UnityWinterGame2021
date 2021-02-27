@@ -32,7 +32,7 @@ public class MaltipleShot : Shotinterface
 
         for (int i = 0; i < bullet.bulletnumber; ++i)
         {
-            var bulletshot = GameObject.Instantiate(bullet.bullet, position, Quaternion.Euler(way));
+            var bulletshot = GameObject.Instantiate(bullet.bullet, position, rotation * Quaternion.Euler(way));
             var v = bulletshot.GetComponent<Bullet>();
             v.Init(bullet.bulletspeed, bullet.bulletpower);
         }

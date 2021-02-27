@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         m_lifemax.Subscribe(x => GaugeMaxHP());
         m_trans = keyPad.InputVector();
 
-        m_shot = new MaltipleShot();
+        m_shot = new NormalShot();
         keyPad.LeftClick().Subscribe(x => m_shot.shot(m_bulletstatus, transform.position, transform.rotation));
 
     }
@@ -54,6 +54,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        var direction = Input.mousePosition - screenPos;
+        var angle = Units.getAngle(Vector3.zero, direction);
+        var angles = transform.localEulerAngles;
+        angles.z = angle;
+
+        transform.localEulerAngles = angles;
         transform.position += m_speed * new Vector3(m_trans.Value.x, m_trans.Value.y, 0);
     }
 
