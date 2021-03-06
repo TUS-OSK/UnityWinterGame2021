@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-interface IPlayerState
+public interface IPlayerState
 {
     ReactiveProperty<int> GetHP();
     ReactiveProperty<int> GetMoves();

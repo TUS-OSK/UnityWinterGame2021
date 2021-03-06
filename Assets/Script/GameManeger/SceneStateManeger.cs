@@ -5,21 +5,33 @@ using UniRx;
 
 public class SceneStateManeger : MonoBehaviour
 {
-    IPlayerState player;
-    IPuzzleState puzzle;
+    //*インターフェースで取れないので応急処置的対応
+    public StateInjector injector;
+
+    public IPlayerState player;
+    public IPuzzleState puzzle;
     IKeyPad keyPad;
-    [SerializeField] SceneState sceneState;
+    [SerializeField] public SceneState sceneState;
 
     GameMode statebaf;
+    int totalGetMoves = 0;
 
-    private void Start()
+    private void Awake()
     {
+        player = injector.GetPlayer();
+        puzzle = injector.GetPuzzle();
+        keyPad = injector.GetKeyPad();
         Init();
     }
+
     private void Init()
     {
         player.GetHP().Where(x => x <= 0).Subscribe(
             _ => { if (sceneState.gameMode != GameMode.clear) sceneState.gameMode = GameMode.gameover; }
+        );
+
+        player.GetMoves().Where(x => x != totalGetMoves).Subscribe(
+            x => { sceneState.moves += x - totalGetMoves; totalGetMoves = x; }
         );
 
         keyPad.PhaseChangeKey().Where(x => x == true).Subscribe(

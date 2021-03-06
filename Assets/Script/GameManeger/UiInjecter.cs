@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,20 +6,25 @@ using UniRx;
 
 public class UiInjecter : MonoBehaviour
 {
-    IPlayerState player;
-    IPuzzleState puzzle;
-    [SerializeField] SceneState sceneState;
-
+    [SerializeField] SceneStateManeger maneger;
     [SerializeField] Text hp;
+    [SerializeField] Text movesText;
     [SerializeField] GameObject MenuCambas;
     private void Start()
     {
         Init();
     }
 
+    private void Update()
+    {
+        movesText.text = maneger.sceneState.moves.ToString();
+        MenuCambas.SetActive(maneger.sceneState.gameMode == GameMode.menu);
+
+    }
+
     private void Init()
     {
-        player.GetHP().Subscribe(
+        maneger.player.GetHP().Subscribe(
             x => { hp.text = x.ToString(); }
         );
     }

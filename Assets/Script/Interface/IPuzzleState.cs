@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 
-interface IPuzzleState
+public interface IPuzzleState
 {
     ReactiveProperty<bool> ClearFlag();
 }
