@@ -97,10 +97,12 @@ public class Player : MonoBehaviour, IPlayerState
         {
             other.gameObject.GetComponent<tekazu>().getpoint();
         }
-        else if (other.tag == "HpItem")
+        else if (other.tag == "Item")
         {
             other.gameObject.GetComponent<hpitem>().getpoint();
+            Destroy(other.gameObject);
         }
+        else if (other.tag == "EnemyBullet")
     }
 
     //IPlayerStateの実装
