@@ -4,7 +4,7 @@ using UnityEngine;
 using UniRx;
 
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPlayerState
 {
     //HP初期値
     [SerializeField] private int m_hpin = 10;
@@ -103,4 +103,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //IPlayerStateの実装
+    public ReactiveProperty<int> GetHP() { return m_life; }
+    public ReactiveProperty<int> GetMoves() { return null; }
 }
