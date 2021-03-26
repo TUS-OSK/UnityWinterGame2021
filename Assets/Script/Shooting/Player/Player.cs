@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         m_bulletstatus.bullet = m_bullet;
         m_life.Subscribe(x => GaugeHP());
         m_lifemax.Subscribe(x => GaugeMaxHP());
+        m_count.Subscribe(x => Counter());
         m_trans = keyPad.InputVector();
 
         m_shot = new NormalShot();
@@ -67,7 +68,12 @@ public class Player : MonoBehaviour
     //HPゲージの管理
     void GaugeHP()
     {
-
+        //UIのHPゲージの処理
+        if (m_life.Value <= 0)
+        {
+            //gameover処理
+            Destroy(this.gameObject);
+        }
     }
 
     //HP上限ゲージの管理
@@ -75,7 +81,26 @@ public class Player : MonoBehaviour
     {
 
     }
+    void Counter()
+    {
 
+    }
 
+    public void Damage(int damage)
+    {
+        m_life.Value -= damage;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "TekazuItem")
+        {
+            other.gameObject.GetComponent<tekazu>().getpoint();
+        }
+        else if (other.tag == "HpItem")
+        {
+            other.gameObject.GetComponent<hpitem>().getpoint();
+        }
+    }
 
 }
