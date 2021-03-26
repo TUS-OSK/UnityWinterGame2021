@@ -5,12 +5,12 @@ using UniRx;
 
 public class StatePicker : SceneState, IPlayerState, IPuzzleState
 {
-    [SerializeField] private int hpInSpector;
+    [SerializeField] private int hpInSpector = 0;
     private ReactiveProperty<int> hpReact = new ReactiveProperty<int>();
-    [SerializeField] private int getMovesInSpector;
+    [SerializeField] private int getMovesInSpector = 0;
     private ReactiveProperty<int> getMovesReact = new ReactiveProperty<int>();
 
-    [SerializeField] bool clearInSpector;
+    [SerializeField] bool clearInSpector = false;
     private ReactiveProperty<bool> clearReact = new ReactiveProperty<bool>();
 
     private void Update()
