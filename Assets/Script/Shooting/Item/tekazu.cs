@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class tekazu : MonoBehaviour
 {
+    public Player player;
+    [SerializeField] int point;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Test");       
-        Debug.Log("branch");
-        Debug.Log("testbranch");
+
     }
 
     // Update is called once per frame
-    void Update(){
+    void Update()
+    {
 
+    }
+
+    public void getpoint()
+    {
+        player.m_life.Value += point;
     }
 }

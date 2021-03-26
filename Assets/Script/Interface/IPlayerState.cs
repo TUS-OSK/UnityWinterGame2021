@@ -8,3 +8,4 @@ public interface IPlayerState
     ReactiveProperty<int> GetHP();
     ReactiveProperty<int> GetMoves();
 }
+
